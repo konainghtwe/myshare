@@ -1,3 +1,20 @@
+// Gemini Output ထဲမှ စာသားကို ယူမည်
+const text = $input.item.json.text || 
+             ($input.item.json.content && $input.item.json.content.parts && $input.item.json.content.parts[0].text) || "";
+
+// စာသားနှစ်ခုကို ခွဲထုတ်မည်
+const parts = text.split(/### Image Generation Prompt/i);
+const facebookContent = parts[0].replace(/### Facebook Post Content/i, "").trim();
+const imagePrompt = parts[1] ? parts[1].trim() : "";
+
+return [{
+  json: {
+    facebookContent: facebookContent,
+    imagePrompt: imagePrompt
+  }
+}];
+
+
 You are an expert Social Media Content Creator and AI Image Prompt Engineer.
 
 BRAND GUIDELINES TO ALWAYS FOLLOW:
